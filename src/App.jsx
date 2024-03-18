@@ -30,7 +30,7 @@ function App() {
           setQuestions(data.results)
           setIsRevealAnswerBtnHidden(false)
           setPlayAgain(true)
-          console.log(data);
+          // console.log(data);
         });
     }
   }, [startQuiz]);
@@ -63,14 +63,16 @@ function App() {
 
   function revealAnswers() {
     const correctAnswers = questions.map(quiz => decode(quiz.correct_answer))
-    console.log(correctAnswers)
     const results = questions.map((quiz, index) => ({
       isCorrectAnswer: selectedAnswer[index] === correctAnswers[index]
     }))
-    console.log(results)
     setResults(results)
     setShowCorrectAnswerCount(true)
-    checkShowConfetti()
+
+    const allCorrect = results.every(result => result.isCorrectAnswer === true);
+    if (allCorrect) {
+      setShowConfetti(true);
+    }
 
     if (sectionRef.current) {
       sectionRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -95,11 +97,6 @@ function App() {
       difficulty:"",
       questionsNumber: ""
     })
-  }
-
-  function checkShowConfetti() {
-    const allCorrect = results.every(result => result.isCorrectAnswer === true);
-    setShowConfetti(allCorrect);
   }
 
   return (
