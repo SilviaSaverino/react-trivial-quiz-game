@@ -3,8 +3,6 @@ import React, { useState, useEffect } from "react";
 export default function Quiz(props) {
     const { question, correctAnswer, incorrectAnswers, onAnswerClicked, updateSelectedAnswer } = props
     const [shuffledAnswers, setShuffledAnswers] = useState([])
-    const [selectedAnswer, setSelectedAnswer] = useState()
-    const [disabled, setDisabled] = useState(false)
     const [selectedAnswer, setSelectedAnswer] = useState(null)
     const [disabled, setDisabled] = useState(false)
 
