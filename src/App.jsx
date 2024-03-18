@@ -8,7 +8,7 @@ function App() {
   const [startQuiz, setStartQuiz] = useState(false)
   const [questions, setQuestions] = useState([])
   const [isRevealAnswerBtnHidden, setIsRevealAnswerBtnHidden] = useState(true)
-  const [clickedAnswerTotalCount, setClickedAnswerTotalCount] = useState(1)
+  const [clickedAnswerTotalCount, setClickedAnswerTotalCount] = useState(0)
 
   // const checkAnswerButtonStyle = {
   //   display: isRevealAnswerBtnHidden ? 'none' : 'block'
@@ -67,7 +67,7 @@ function App() {
           ))}
            {/* {clickedAnswerTotalCount > 5 ? <button style={checkAnswerButtonStyle} className='quiz-btn hidden-btn'> Check your answers</button> : ''}
            */}
-           {clickedAnswerTotalCount > 5 ? (
+           {clickedAnswerTotalCount === questions.length ? (
             <button className='quiz-btn'>
               Check your answers
             </button>
