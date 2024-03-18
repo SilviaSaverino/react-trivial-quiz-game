@@ -30,7 +30,6 @@ function App() {
           setQuestions(data.results)
           setIsRevealAnswerBtnHidden(false)
           setPlayAgain(true)
-          // console.log(data);
         });
     }
   }, [startQuiz]);
