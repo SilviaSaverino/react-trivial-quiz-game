@@ -10,17 +10,17 @@ function App() {
   const [isRevealAnswerBtnHidden, setIsRevealAnswerBtnHidden] = useState(true)
   const [clickedAnswerTotalCount, setClickedAnswerTotalCount] = useState(1)
 
-  const checkAnswerButtonStyle = {
-    display: isRevealAnswerBtnHidden ? 'none' : 'block'
-  }
+  // const checkAnswerButtonStyle = {
+  //   display: isRevealAnswerBtnHidden ? 'none' : 'block'
+  // }
 
-  function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-}
+//   function shuffle(array) {
+//     for (let i = array.length - 1; i > 0; i--) {
+//         const j = Math.floor(Math.random() * (i + 1));
+//         [array[i], array[j]] = [array[j], array[i]];
+//     }
+//     return array;
+// }
    
   useEffect(() => {
     if (startQuiz) {
@@ -65,8 +65,16 @@ function App() {
              onAnswerClicked={trackClickedAnswerTotalCount}
               />              
           ))}
-          <button style={checkAnswerButtonStyle} className='quiz-btn'>Check your answers</button>
-        </section>
+           {/* {clickedAnswerTotalCount > 5 ? <button style={checkAnswerButtonStyle} className='quiz-btn hidden-btn'> Check your answers</button> : ''}
+           */}
+           {clickedAnswerTotalCount > 5 ? (
+            <button className='quiz-btn'>
+              Check your answers
+            </button>
+          ) : (
+            <div className='hidden-div'></div>
+          )}
+         </section>
       )}
     </main>
   );

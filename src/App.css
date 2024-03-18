@@ -121,8 +121,9 @@ section {
   flex-direction: column;
 }
 
-.hidden {
-  display: none;
+.hidden-div{
+  background-color: pink;
+  height: 105px;
 }
 
 @media (min-width: 600px) {
