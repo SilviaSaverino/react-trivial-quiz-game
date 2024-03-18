@@ -65,8 +65,8 @@ main {
   color: #fafafa;
 }
 .quiz-container {
-  /* padding: 1em;
-  text-align: center; */
+  text-align: center;
+  padding: 0.5em;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -96,7 +96,7 @@ span {
   flex-wrap: wrap;
   gap: 10px;
   border-bottom: 1px solid rgb(205, 201, 201);
-  padding: 0.5em;
+  padding: 0 0.5em 1.5em 0.5em;
   width: 100%;
 }
 
