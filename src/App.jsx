@@ -11,6 +11,7 @@ function App() {
   const [clickedAnswerTotalCount, setClickedAnswerTotalCount] = useState(0)
   const [selectedAnswer, setSelectedAnswers] = useState([])
   const [results, setResults] = useState([])
+  const [showCorrectAnswerCount, setShowCorrectAnswerCount] = useState(false)
  
   useEffect(() => {
     if (startQuiz) {
@@ -49,6 +50,12 @@ function App() {
     }))
     console.log(results)
     setResults(results)
+    setShowCorrectAnswerCount(true)
+  }
+
+  function getCorrectAnswerCount(){
+    const correctCount = results.filter(result => result && result.isCorrectAnswer).length
+    return correctCount
   }
 
   return (
@@ -75,16 +82,22 @@ function App() {
              results={results[index]}
               />              
           ))}
-           {clickedAnswerTotalCount === questions.length ? (
-            <button 
+           {clickedAnswerTotalCount === questions.length && !showCorrectAnswerCount && (
+           <button 
             className='quiz-btn'
             onClick={revealAnswers}
             >
               Check your answers
             </button>
-          ) : (
-            <div className='hidden-div'></div>
           )}
+          {showCorrectAnswerCount && 
+          <div className='answers-count'>
+            <h3>Correct Answers: {getCorrectAnswerCount()}/{questions.length}</h3>
+            <button className='quiz-btn'>
+              Play Again
+            </button>
+          </div>
+          }
          </section>
       )}
     </main>
