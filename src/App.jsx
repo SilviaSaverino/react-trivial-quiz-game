@@ -8,6 +8,7 @@ function App() {
   const [startQuiz, setStartQuiz] = useState(false)
   const [questions, setQuestions] = useState([])
   const [isRevealAnswerBtnHidden, setIsRevealAnswerBtnHidden] = useState(true)
+  const [clickedAnswerTotalCount, setClickedAnswerTotalCount] = useState(1)
 
   const checkAnswerButtonStyle = {
     display: isRevealAnswerBtnHidden ? 'none' : 'block'
@@ -28,13 +29,18 @@ function App() {
         .then(data => {
           setQuestions(data.results)
           setIsRevealAnswerBtnHidden(false)
-          console.log(data);
+          // console.log(data);
         });
     }
   }, [startQuiz]);
 
   function toggleStartState() {
     setStartQuiz(prevStart => !prevStart);
+  }
+
+  function trackClickedAnswerTotalCount(){
+    console.log(clickedAnswerTotalCount)
+    setClickedAnswerTotalCount(prevCount => prevCount +1)
   }
 
   return (
@@ -56,6 +62,7 @@ function App() {
              question={decode(quiz.question)} 
              correctAnswer={decode(quiz.correct_answer)} 
              incorrectAnswers={quiz.incorrect_answers.map(wrongAnswers => decode(wrongAnswers))}
+             onAnswerClicked={trackClickedAnswerTotalCount}
               />              
           ))}
           <button style={checkAnswerButtonStyle} className='quiz-btn'>Check your answers</button>

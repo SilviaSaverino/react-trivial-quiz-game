@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 
 export default function Quiz(props) {
-    const { question, correctAnswer, incorrectAnswers } = props;
+    const { question, correctAnswer, incorrectAnswers, onAnswerClicked } = props;
     const [shuffledAnswers, setShuffledAnswers] = useState([]);
     const [selectedAnswer, setSelectedAnswer] = useState()
 
     useEffect(() => {
         const allAnswers = [...incorrectAnswers, correctAnswer];
-        console.log(allAnswers)
+        // console.log(allAnswers)
         setShuffledAnswers(shuffle(allAnswers));
-    }, [correctAnswer, incorrectAnswers]);
+    }, []);
 
     function shuffle(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -21,10 +21,20 @@ export default function Quiz(props) {
   
     function setClickedAnswerStyle(answer){
         setSelectedAnswer(answer)
+        onAnswerClicked()
     }
+
     const selectedAnswerStyle = {
         backgroundColor:  "#D6DBF5"
-    };
+    }
+
+    function revealCorrectAnswers() {
+        if (selectedAnswer === correctAnswer) {
+            console.log("Correct answer");
+        } else {
+            console.log("Wrong answer");
+        }
+    }
 
     return (
         <div className="quiz-container">
@@ -39,6 +49,7 @@ export default function Quiz(props) {
                         >{answer}</button>
                 ))}
             </div>
+            {/* <button onClick={revealCorrectAnswers}>reveal answer</button> */}
         </div>
     )
 }
