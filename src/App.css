@@ -35,14 +35,11 @@ main {
 }
 
 .initial-page {
-  width: 50%;
-  height: 300px;
+  height: auto;
   text-align: center;
   padding: 1.5em;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 1em;
   border: 1px solid rgb(205, 201, 201);
   border-radius: 10px;
 }
@@ -150,12 +147,9 @@ form fieldset{
   margin: 1.2em auto;
 }
 
-
-@media (min-width: 600px) {
-
-  body,
-  button {
-    letter-spacing: 1.5px;
+@media (min-width: 600px){
+  body, button {
+  letter-spacing: 1.5px;
   }
 
   main {
