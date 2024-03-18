@@ -100,8 +100,8 @@ function App() {
 
   return (
     <main>
-      <img className="blue-blob" src="./src/assets/images/blue-blob.png" alt="blue blob" />
-      <img className="yellow-blob" src="./src/assets/images/yellow-blob.png" alt="yellow blob" />
+      <img className="blue-blob" src="./assets/images/blue-blob.png" alt="blue blob" />
+      <img className="yellow-blob" src="./assets/images/yellow-blob.png" alt="yellow blob" />
       {!startQuiz &&
         <div className="initial-page">
           <h2 className="title">Trivial Quiz</h2>
