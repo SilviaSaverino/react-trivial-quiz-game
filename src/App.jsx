@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react'
 import './App.css'
-// import Questions from './assets/components/questions'
+import Quiz from './Quiz';
 
 function App() {
 
@@ -9,7 +9,7 @@ function App() {
   useEffect(() => {
     fetch("https://opentdb.com/api.php?amount=6&difficulty=medium&type=multiple")
       .then(res => res.json())
-      .then(data => {setQuestions(data)
+      .then(data => {setQuestions(data.results)
       console.log(data);})
   }, []);
 
@@ -21,6 +21,11 @@ function App() {
         <h2 className="title">Trivial Quiz</h2>
         <p className='content'>Test your knowledge</p>
         <button className='start-quiz-btn'>Start the quiz!</button>
+      </div>
+      <div>
+      {questions && questions.map((quiz, index) => (
+          <Quiz key={index} question={quiz.question} correctAnswer={quiz.correct_answer} />
+        ))}
       </div>
     </main>
   );
