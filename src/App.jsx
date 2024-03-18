@@ -12,6 +12,7 @@ function App() {
   const [selectedAnswer, setSelectedAnswers] = useState([])
   const [results, setResults] = useState([])
   const [showCorrectAnswerCount, setShowCorrectAnswerCount] = useState(false)
+  const [playAgain, setPlayAgain] = useState()
   const [formData, setFormData] = useState(
     {
       difficulty: "",
@@ -26,6 +27,7 @@ function App() {
         .then(data => {
           setQuestions(data.results)
           setIsRevealAnswerBtnHidden(false)
+          setPlayAgain(true)
           console.log(data);
         });
     }
@@ -75,6 +77,20 @@ function App() {
   function getCorrectAnswerCount() {
     const correctCount = results.filter(result => result && result.isCorrectAnswer).length
     return correctCount
+  }
+
+  function handlePlayAgainBtn(){
+    setPlayAgain(false)
+    setStartQuiz(false)
+    setShowCorrectAnswerCount(false)
+    setClickedAnswerTotalCount(0)
+    setSelectedAnswers([])
+    setQuestions([])
+    setResults([])
+    setFormData({
+      difficulty:"",
+      questionsNumber: ""
+    })
   }
 
   return (
@@ -171,10 +187,10 @@ function App() {
               Check your answers
             </button>
           )}
-          {showCorrectAnswerCount &&
+           {showCorrectAnswerCount && playAgain && 
             <div className='answers-count'>
               <h3>Correct Answers: {getCorrectAnswerCount()}/{questions.length}</h3>
-              <button className='quiz-btn'>
+              <button className='quiz-btn' onClick={handlePlayAgainBtn}>
                 Play Again
               </button>
             </div>
