@@ -7,13 +7,15 @@ function App() {
 
   const [startQuiz, setStartQuiz] = useState(false)
   const [questions, setQuestions] = useState([])
+  const [isRevealAnswerBtnHidden, setIsRevealAnswerBtnHidden] = useState(true)
 
   useEffect(() => {
     if (startQuiz) {
       fetch("https://opentdb.com/api.php?amount=5&difficulty=medium&type=multiple")
         .then(res => res.json())
         .then(data => {
-          setQuestions(data.results);
+          setQuestions(data.results)
+          setIsRevealAnswerBtnHidden(false)
           console.log(data);
         });
     }
@@ -21,6 +23,10 @@ function App() {
 
   function toggleStartState() {
     setStartQuiz(prevStart => !prevStart);
+  }
+
+  const checkAnswerButtonStyle = {
+    display: isRevealAnswerBtnHidden ? 'none' : 'block'
   }
 
   return (
@@ -31,7 +37,7 @@ function App() {
       <div className="initial-page">
         <h2 className="title">Trivial Quiz</h2>
         <p className='content'>Test your knowledge</p>
-        <button onClick={toggleStartState}className='start-quiz-btn'>Start the quiz!</button>
+        <button onClick={toggleStartState}className='quiz-btn'>Start the quiz!</button>
       </div> 
       }
       {startQuiz && (
@@ -41,8 +47,10 @@ function App() {
              key={index} 
              question={decode(quiz.question)} 
              correctAnswer={decode(quiz.correct_answer)} 
-             incorrectAnswers={quiz.incorrect_answers.map(wrongAnswers => decode(wrongAnswers))}/>
+             incorrectAnswers={quiz.incorrect_answers.map(wrongAnswers => decode(wrongAnswers))}
+              />              
           ))}
+          <button style={checkAnswerButtonStyle} className='quiz-btn'>Check your answers</button>
         </section>
       )}
     </main>
