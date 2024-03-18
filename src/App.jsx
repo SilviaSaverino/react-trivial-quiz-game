@@ -9,19 +9,7 @@ function App() {
   const [questions, setQuestions] = useState([])
   const [isRevealAnswerBtnHidden, setIsRevealAnswerBtnHidden] = useState(true)
   const [clickedAnswerTotalCount, setClickedAnswerTotalCount] = useState(0)
-
-  // const checkAnswerButtonStyle = {
-  //   display: isRevealAnswerBtnHidden ? 'none' : 'block'
-  // }
-
-//   function shuffle(array) {
-//     for (let i = array.length - 1; i > 0; i--) {
-//         const j = Math.floor(Math.random() * (i + 1));
-//         [array[i], array[j]] = [array[j], array[i]];
-//     }
-//     return array;
-// }
-   
+ 
   useEffect(() => {
     if (startQuiz) {
       fetch("https://opentdb.com/api.php?amount=5&difficulty=medium&type=multiple")
@@ -54,7 +42,7 @@ function App() {
         <button onClick={toggleStartState}className='quiz-btn'>Start the quiz!</button>
       </div> 
       }
-      {startQuiz && (
+      {startQuiz && questions.length > 0 && (
         <section>
           {questions.map((quiz, index) => (
              <Quiz 
@@ -65,8 +53,6 @@ function App() {
              onAnswerClicked={trackClickedAnswerTotalCount}
               />              
           ))}
-           {/* {clickedAnswerTotalCount > 5 ? <button style={checkAnswerButtonStyle} className='quiz-btn hidden-btn'> Check your answers</button> : ''}
-           */}
            {clickedAnswerTotalCount === questions.length ? (
             <button className='quiz-btn'>
               Check your answers
