@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 export default function Quiz(props) {
-    const { question, correctAnswer, incorrectAnswers, onAnswerClicked, updateSelectedAnswer } = props
+    const { question, correctAnswer, incorrectAnswers, onAnswerClicked, updateSelectedAnswer, results } = props
     const [shuffledAnswers, setShuffledAnswers] = useState([])
     const [selectedAnswer, setSelectedAnswer] = useState(null)
     const [disabled, setDisabled] = useState(false)
@@ -30,8 +30,19 @@ export default function Quiz(props) {
         onAnswerClicked()
     }
 
-    const selectedAnswerStyle = {
-        backgroundColor: "#D6DBF5"
+    function getAnswerStyle(answer) {
+        if (results) {
+            if (answer === correctAnswer && selectedAnswer === answer) {
+                return "#94D7A2"; // Green
+            }
+            if (answer !== correctAnswer && selectedAnswer === answer) {
+                return "#F8BCBC"; // Red
+            }
+        }
+        if (selectedAnswer === answer) {
+            return "#D6DBF5"; // Blue
+        }
+        return "#FFFFFF"; // White
     }
 
     return (
@@ -44,8 +55,8 @@ export default function Quiz(props) {
                         disabled={disabled}
                         key={index}
                         className="answer-btn"
-                        style={selectedAnswer === answer ? selectedAnswerStyle : {}}
-                        >
+                        style={{ backgroundColor: getAnswerStyle(answer) }}
+                    >
                         {answer}
                     </button>
                 ))}

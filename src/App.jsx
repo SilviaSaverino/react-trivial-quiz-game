@@ -10,6 +10,7 @@ function App() {
   const [isRevealAnswerBtnHidden, setIsRevealAnswerBtnHidden] = useState(true)
   const [clickedAnswerTotalCount, setClickedAnswerTotalCount] = useState(0)
   const [selectedAnswer, setSelectedAnswers] = useState([])
+  const [results, setResults] = useState([])
  
   useEffect(() => {
     if (startQuiz) {
@@ -28,7 +29,7 @@ function App() {
   }
 
   function trackClickedAnswerTotalCount(){
-    console.log(clickedAnswerTotalCount)
+   // console.log(clickedAnswerTotalCount)
     setClickedAnswerTotalCount(prevCount => prevCount +1)
   }
 
@@ -41,7 +42,13 @@ function App() {
   }
 
   function revealAnswers(){
-    console.log(selectedAnswer)
+    const correctAnswers = questions.map(quiz => decode(quiz.correct_answer))
+    console.log(correctAnswers)
+    const results = questions.map((quiz, index) => ({
+      isCorrectAnswer : selectedAnswer[index] === correctAnswers[index]
+    }))
+    console.log(results)
+    setResults(results)
   }
 
   return (
@@ -65,6 +72,7 @@ function App() {
              incorrectAnswers={quiz.incorrect_answers.map(wrongAnswers => decode(wrongAnswers))}
              onAnswerClicked={trackClickedAnswerTotalCount}
              updateSelectedAnswer={(answer) => updateSelectedAnswerArray(index, answer)}
+             results={results[index]}
               />              
           ))}
            {clickedAnswerTotalCount === questions.length ? (
