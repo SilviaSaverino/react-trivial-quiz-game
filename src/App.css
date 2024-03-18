@@ -31,6 +31,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 1.5em 0;
 }
 
 .initial-page {
@@ -132,7 +133,7 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
+  margin-top: 1em;
   text-align: center;
 }
 
@@ -155,6 +156,14 @@ form fieldset{
   body,
   button {
     letter-spacing: 1.5px;
+  }
+
+  main {
+    padding: 3.5em 5em;
+  }
+
+  .quiz-container {
+    padding: 1.5em;
   }
 
   .answer-container {

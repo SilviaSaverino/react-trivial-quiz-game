@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState,useEffect, useRef } from 'react'
 import { decode } from 'html-entities'
 import './App.css'
 import Quiz from './Quiz';
 
 function App() {
-
+  const sectionRef = useRef(null);
   const [startQuiz, setStartQuiz] = useState(false)
   const [questions, setQuestions] = useState([])
   const [isRevealAnswerBtnHidden, setIsRevealAnswerBtnHidden] = useState(true)
@@ -66,6 +66,10 @@ function App() {
     console.log(results)
     setResults(results)
     setShowCorrectAnswerCount(true)
+
+    if (sectionRef.current) {
+      sectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
   function getCorrectAnswerCount() {
@@ -147,7 +151,7 @@ function App() {
         </div>
       }
       {startQuiz && questions.length > 0 && (
-        <section>
+         <section ref={sectionRef}>
           {questions.map((quiz, index) => (
             <Quiz
               key={index}
