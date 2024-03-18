@@ -1,4 +1,5 @@
 import { useState,useEffect, useRef } from 'react'
+import Confetti from 'react-confetti'
 import { decode } from 'html-entities'
 import './App.css'
 import Quiz from './Quiz';
@@ -13,6 +14,7 @@ function App() {
   const [results, setResults] = useState([])
   const [showCorrectAnswerCount, setShowCorrectAnswerCount] = useState(false)
   const [playAgain, setPlayAgain] = useState()
+  const [showConfetti, setShowConfetti] = useState(false)
   const [formData, setFormData] = useState(
     {
       difficulty: "",
@@ -33,7 +35,7 @@ function App() {
     }
   }, [startQuiz]);
 
-  function handleDifficultyChange(event) {
+  function handleDifficultyAndQuestionNumbersSetUp(event){
     const { name, value, type, checked } = event.target
     setFormData(prevFormData => {
       return {
@@ -68,6 +70,7 @@ function App() {
     console.log(results)
     setResults(results)
     setShowCorrectAnswerCount(true)
+    checkShowConfetti()
 
     if (sectionRef.current) {
       sectionRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -87,10 +90,16 @@ function App() {
     setSelectedAnswers([])
     setQuestions([])
     setResults([])
+    setShowConfetti(false)
     setFormData({
       difficulty:"",
       questionsNumber: ""
     })
+  }
+
+  function checkShowConfetti() {
+    const allCorrect = results.every(result => result.isCorrectAnswer === true);
+    setShowConfetti(allCorrect);
   }
 
   return (
@@ -110,7 +119,7 @@ function App() {
                 name="difficulty"
                 value="easy"
                 checked={formData.difficulty === "easy"}
-                onChange={handleDifficultyChange}
+                onChange={handleDifficultyAndQuestionNumbersSetUp}
               />
               <label htmlFor="unemployed">Easy</label>
               <input
@@ -119,7 +128,7 @@ function App() {
                 name="difficulty"
                 value="medium"
                 checked={formData.difficulty === "medium"}
-                onChange={handleDifficultyChange}
+                onChange={handleDifficultyAndQuestionNumbersSetUp}
               />
               <label htmlFor="part-time">Medium</label>
               <input
@@ -128,7 +137,7 @@ function App() {
                 name="difficulty"
                 value="hard"
                 checked={formData.difficulty === "hard"}
-                onChange={handleDifficultyChange}
+                onChange={handleDifficultyAndQuestionNumbersSetUp}
               />
               <label htmlFor="full-time">Hard</label>
             </fieldset>
@@ -140,7 +149,7 @@ function App() {
                 name="questionsNumber"
                 value="5"
                 checked={formData.questionsNumber === "5"}
-                onChange={handleDifficultyChange}
+                onChange={handleDifficultyAndQuestionNumbersSetUp}
               />
               <label htmlFor="full-time">5</label>
               <input
@@ -149,7 +158,7 @@ function App() {
                 name="questionsNumber"
                 value="10"
                 checked={formData.questionsNumber === "10"}
-                onChange={handleDifficultyChange}
+                onChange={handleDifficultyAndQuestionNumbersSetUp}
               />
               <label htmlFor="full-time">10</label>
               <input
@@ -158,7 +167,7 @@ function App() {
                 name="questionsNumber"
                 value="15"
                 checked={formData.questionsNumber === "15"}
-                onChange={handleDifficultyChange}
+                onChange={handleDifficultyAndQuestionNumbersSetUp}
               />
               <label htmlFor="full-time">15</label>
             </fieldset>
@@ -166,6 +175,7 @@ function App() {
           <button onClick={toggleStartState} className='quiz-btn start-quiz'>Start the quiz!</button>
         </div>
       }
+      {showConfetti && <Confetti />}
       {startQuiz && questions.length > 0 && (
          <section ref={sectionRef}>
           {questions.map((quiz, index) => (
