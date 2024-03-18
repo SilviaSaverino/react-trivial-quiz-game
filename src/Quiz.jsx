@@ -7,10 +7,10 @@ export default function Quiz(props) {
         <div className="quiz-container">
             <h3 className="questions">{question}</h3>
             <div className="answer-container">
-                <span className="correct-answer">{correctAnswer}</span>
+            <button className="correct-answer answer-btn">{correctAnswer}</button>
 
                 {incorrectAnswers.map((wrongAnswer, index) => (
-                    <span className="wrong-answer" key={index}>{wrongAnswer}</span>
+                     <button className="wrong-answer answer-btn" key={index}>{wrongAnswer}</button>
                 ))}
             </div>
         </div>
