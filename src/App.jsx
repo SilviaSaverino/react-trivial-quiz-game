@@ -1,4 +1,5 @@
 import { useState,useEffect } from 'react'
+import {decode} from 'html-entities'
 import './App.css'
 import Quiz from './Quiz';
 
@@ -36,7 +37,11 @@ function App() {
       {startQuiz && (
         <section>
           {questions.map((quiz, index) => (
-            <Quiz key={index} question={quiz.question} correctAnswer={quiz.correct_answer} incorrectAnswers={quiz.incorrect_answers}/>
+             <Quiz 
+             key={index} 
+             question={decode(quiz.question)} 
+             correctAnswer={decode(quiz.correct_answer)} 
+             incorrectAnswers={quiz.incorrect_answers.map(wrongAnswers => decode(wrongAnswers))}/>
           ))}
         </section>
       )}
