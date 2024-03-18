@@ -9,6 +9,10 @@ function App() {
   const [questions, setQuestions] = useState([])
   const [isRevealAnswerBtnHidden, setIsRevealAnswerBtnHidden] = useState(true)
 
+  const checkAnswerButtonStyle = {
+    display: isRevealAnswerBtnHidden ? 'none' : 'block'
+  }
+   
   useEffect(() => {
     if (startQuiz) {
       fetch("https://opentdb.com/api.php?amount=5&difficulty=medium&type=multiple")
@@ -23,10 +27,6 @@ function App() {
 
   function toggleStartState() {
     setStartQuiz(prevStart => !prevStart);
-  }
-
-  const checkAnswerButtonStyle = {
-    display: isRevealAnswerBtnHidden ? 'none' : 'block'
   }
 
   return (
