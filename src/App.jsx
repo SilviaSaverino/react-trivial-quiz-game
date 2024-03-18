@@ -9,7 +9,7 @@ function App() {
 
   useEffect(() => {
     if (startQuiz) {
-      fetch("https://opentdb.com/api.php?amount=6&difficulty=medium&type=multiple")
+      fetch("https://opentdb.com/api.php?amount=5&difficulty=medium&type=multiple")
         .then(res => res.json())
         .then(data => {
           setQuestions(data.results);
@@ -34,11 +34,11 @@ function App() {
       </div> 
       }
       {startQuiz && (
-        <div>
+        <section>
           {questions.map((quiz, index) => (
             <Quiz key={index} question={quiz.question} correctAnswer={quiz.correct_answer} incorrectAnswers={quiz.incorrect_answers}/>
           ))}
-        </div>
+        </section>
       )}
     </main>
   );
