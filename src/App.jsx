@@ -36,7 +36,7 @@ function App() {
       {startQuiz && (
         <div>
           {questions.map((quiz, index) => (
-            <Quiz key={index} question={quiz.question} correctAnswer={quiz.correct_answer} />
+            <Quiz key={index} question={quiz.question} correctAnswer={quiz.correct_answer} incorrectAnswers={quiz.incorrect_answers}/>
           ))}
         </div>
       )}
