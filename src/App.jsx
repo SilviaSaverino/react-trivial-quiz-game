@@ -1,35 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState,useEffect } from 'react'
 import './App.css'
+// import Questions from './assets/components/questions'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [questions, setQuestions] = useState()
+
+  useEffect(() => {
+    fetch("https://opentdb.com/api.php?amount=6&difficulty=medium&type=multiple")
+      .then(res => res.json())
+      .then(data => {setQuestions(data)
+      console.log(data);})
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <main>
+      <img className="blue-blob" src="./src/assets/images/blue-blob.png" alt="blue blob" />
+      <img className="yellow-blob" src="./src/assets/images/yellow-blob.png" alt="yellow blob" />
+      <div className="initial-page">
+        <h2 className="title">Trivial Quiz</h2>
+        <p className='content'>Test your knowledge</p>
+        <button className='start-quiz-btn'>Start the quiz!</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </main>
+  );
 }
 
-export default App
+export default App;
