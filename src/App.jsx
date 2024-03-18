@@ -29,7 +29,7 @@ function App() {
         .then(data => {
           setQuestions(data.results)
           setIsRevealAnswerBtnHidden(false)
-          // console.log(data);
+          console.log(data);
         });
     }
   }, [startQuiz]);

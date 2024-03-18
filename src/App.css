@@ -84,6 +84,8 @@ main {
 
 .answer-btn {
   cursor: pointer;
+  color: #293264;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
   font-family: 'Roboto', sans-serif;
   font-size: 0.8rem;
   font-weight: 500;
@@ -97,6 +99,12 @@ main {
   width: 33%;
 }
 
+.answer-btn:disabled {
+  cursor: not-allowed; 
+  opacity: 1; 
+  color: #293264;
+  box-shadow: none;
+}
 
 .answer-container {
   display: flex;
