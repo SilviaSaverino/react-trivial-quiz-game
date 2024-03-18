@@ -9,6 +9,7 @@ function App() {
   const [questions, setQuestions] = useState([])
   const [isRevealAnswerBtnHidden, setIsRevealAnswerBtnHidden] = useState(true)
   const [clickedAnswerTotalCount, setClickedAnswerTotalCount] = useState(0)
+  const [selectedAnswer, setSelectedAnswers] = useState([])
  
   useEffect(() => {
     if (startQuiz) {
@@ -31,6 +32,18 @@ function App() {
     setClickedAnswerTotalCount(prevCount => prevCount +1)
   }
 
+  function updateSelectedAnswerArray(index, answer) {
+    setSelectedAnswers(prevAnswers => {
+      const updatedAnswers = [...prevAnswers];
+      updatedAnswers[index] = answer;
+      return updatedAnswers;
+    });
+  }
+
+  function revealAnswers(){
+    console.log(selectedAnswer)
+  }
+
   return (
     <main>
       <img className="blue-blob" src="./src/assets/images/blue-blob.png" alt="blue blob" />
@@ -51,10 +64,14 @@ function App() {
              correctAnswer={decode(quiz.correct_answer)} 
              incorrectAnswers={quiz.incorrect_answers.map(wrongAnswers => decode(wrongAnswers))}
              onAnswerClicked={trackClickedAnswerTotalCount}
+             updateSelectedAnswer={(answer) => updateSelectedAnswerArray(index, answer)}
               />              
           ))}
            {clickedAnswerTotalCount === questions.length ? (
-            <button className='quiz-btn'>
+            <button 
+            className='quiz-btn'
+            onClick={revealAnswers}
+            >
               Check your answers
             </button>
           ) : (
