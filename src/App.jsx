@@ -17,8 +17,8 @@ function App() {
   const [showConfetti, setShowConfetti] = useState(false)
   const [formData, setFormData] = useState(
     {
-      difficulty: "",
-      questionsNumber: ""
+      difficulty: "easy",
+      questionsNumber: "5"
     }
   )
 
@@ -93,8 +93,8 @@ function App() {
     setResults([])
     setShowConfetti(false)
     setFormData({
-      difficulty:"",
-      questionsNumber: ""
+      difficulty:"easy",
+      questionsNumber: "5"
     })
   }
 
