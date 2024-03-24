@@ -63,7 +63,7 @@ main {
   color: #fafafa;
 }
 
-.start-quiz{
+.start-quiz {
   margin: 0 auto;
 }
 
@@ -101,8 +101,8 @@ main {
 }
 
 .answer-btn:disabled {
-  cursor: not-allowed; 
-  opacity: 1; 
+  cursor: not-allowed;
+  opacity: 1;
   color: #293264;
   box-shadow: none;
 }
@@ -122,7 +122,7 @@ section {
   flex-direction: column;
 }
 
-.hidden-div{
+.hidden-div {
   height: 105px;
 }
 
@@ -138,7 +138,7 @@ legend {
   font-weight: 600;
 }
 
-form fieldset{
+form fieldset {
   padding: 0.5em;
   border: none;
   display: flex;
@@ -147,9 +147,11 @@ form fieldset{
   margin: 1.2em auto;
 }
 
-@media (min-width: 600px){
-  body, button {
-  letter-spacing: 1.5px;
+@media (min-width: 600px) {
+
+  body,
+  button {
+    letter-spacing: 1.5px;
   }
 
   main {
@@ -167,12 +169,10 @@ form fieldset{
 
 @media (min-width: 900px) {
 
-  .main, .initial-page {
-    font-size: 1.2rem;
-  }
-
+  .main,
+  .initial-page,
   .quiz-container {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   .answer-btn {
