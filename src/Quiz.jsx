@@ -38,6 +38,9 @@ export default function Quiz(props) {
             if (answer !== correctAnswer && selectedAnswer === answer) {
                 return "#F8BCBC"; // Red
             }
+            if (answer === correctAnswer) {
+                return "rgb(231 242 232)"; // Light green for correct, not selected
+            }
         }
         if (selectedAnswer === answer) {
             return "#D6DBF5"; // Blue
