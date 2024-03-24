@@ -164,3 +164,18 @@ form fieldset{
     flex-wrap: nowrap;
   }
 }
+
+@media (min-width: 900px) {
+
+  .main, .initial-page {
+    font-size: 1.2rem;
+  }
+
+  .quiz-container {
+    font-size: 1.5rem;
+  }
+
+  .answer-btn {
+    font-size: 1rem;
+  }
+}
