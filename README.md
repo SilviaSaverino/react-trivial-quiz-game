@@ -6,22 +6,22 @@ Check out the project [Live Site](https://silviasaverino.github.io/react-trivial
 ## Features
 - Users can select the difficulty level and the number of questions they want to answer.
 
-![screenshot of starting page](./src/assets/images/initialpage.png)
+![screenshot of starting page](./public/images/initialpage.png)
 
 - Questions are fetched from the Open Trivia Database API based on the selected difficulty and number.
 - Users can answer the questions by selecting one of the provided options.
 
-![screenshot of selected answer style](./src/assets/images/selectedstyle.png)
+![screenshot of selected answer style](./public/images/selectedstyle.png)
 
 - After answering all the questions, users can check their answers.
 - The correct and incorrect answers are highlighted.
 
-![screenshot of correct and wrong answer style](./src/assets/images/answerstyle.png)
+![screenshot of correct and wrong answer style](./public/images/answerstyle.png)
 
 - Users can play the quiz again.
 - Confetti effect will be rendered if the selected answers are all correct
 
-![screenshot of confetti effect on the page](./src/assets/images/confetti.png)
+![screenshot of confetti effect on the page](./public/images/confetti.png)
 
 ## Project Structure
 The project structure is organized as follows:
@@ -113,6 +113,6 @@ The Quiz component renders the question and answer options. It maps over the shu
 The style of each answer button is determined based on conditions such as whether the user has selected an answer, whether the answer is correct or incorrect, and whether the answer selection is disabled.
 
 ## Responsive layout
-![screenshot of app page on small screen](./src/assets/images/responsive.png)
+![screenshot of app page on small screen](./public/images/responsive.png)
 
 Crafted with responsive design principles, the trivia quiz app seamlessly adjusts its layout and functionality to suit diverse screen sizes and devices. Users can enjoy the quiz experience on any platform, be it desktop, tablet, or smartphone, without compromising usability or visual appeal. Through thoughtful implementation of CSS styling and media queries, the app delivers a consistent and engaging interface across various devices, ensuring accessibility and user satisfaction.
